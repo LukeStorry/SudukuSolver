@@ -5,7 +5,6 @@
  
 #include <stdio.h>
 #include <stdlib.h>
-#include <ctype.h>
 
 typedef unsigned short US;
 
@@ -35,14 +34,15 @@ void inputSize(US *rows, US *cols) {
 };
 
 void inputSuduku(US *suduku, US rows, US cols) {
-    US i;
+    US i, j;
     outputLine(cols);
     for ( i=0 ; i<rows ; i++ ) {
         for (j=0 ; j<cols ; j++) {
+            system("clear");
             printf("Please enter your suduku puzzle below, hitting <ENTER> after each number:\n");
-            outputSuduku(suduku,i,j);
-            scanf(" %hu ", &(row[j]));
-            systme("cls");
+            outputSuduku(suduku,i+1,j);
+            scanf("%hu", &(suduku[i*cols+j]));
+	};
     };
     printf("Thanks!");
 };

@@ -18,8 +18,8 @@ int main (void) {
     int rows, cols, *suduko;
     inputSize(&rows,&cols);
     inputSuduku(suduko,rows, cols);
-    printf("\n\n\n TestL: is this it? \n\n")
-    outputSuduku(suduku,rows,cols)
+    printf("\n\n\n TestL: is this it? \n\n");
+    outputSuduku(suduku,rows,cols);
     return 0;
 }
 

@@ -36,15 +36,18 @@ void inputSize(US *rows, US *cols) {
 
 void inputSuduku(US *suduku, US rows, US cols) {
     US i;
-    printf("Please enter your suduku puzzle below, hitting <ENTER> after each number:\n");
     outputLine(cols);
     for ( i=0 ; i<rows ; i++ ) {
-        inputRow(&(suduku[i*rows]),cols);
-        outputLine(cols);
+        for (j=0 ; j<cols ; j++) {
+            printf("Please enter your suduku puzzle below, hitting <ENTER> after each number:\n");
+            outputSuduku(suduku,i,j);
+            scanf(" %hu ", &(row[j]));
+            systme("cls");
     };
     printf("Thanks!");
 };
 
+/* not needed, all in one function now
 void inputRow (US *row, US cols) {
     US j, c, chars;
     for (j=0 ; j<cols ; j++) {
@@ -53,6 +56,7 @@ void inputRow (US *row, US cols) {
         printf("%c[2K", 27); //VT100 code to erase previous line
     };
 };
+*/
 
 void outputSuduku (US* suduku, US rows, US cols) {
     US i;

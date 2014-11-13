@@ -28,14 +28,14 @@ int main (void) {
 
 void inputSize(US *rows, US *cols) {
     printf("How many rows does the suduku have? ");
-    scanf(" %hu ",rows);
+    scanf("%hu",rows);
     printf("How many columns does the suduku have? ");
-    scanf(" %hu ",cols);
+    scanf("%hu",cols);
 };
 
 void inputSuduku(US *suduku, US rows, US cols) {
     US i;
-    printf("Please enter your suduku puzzle below, row by row:\n");
+    printf("Please enter your suduku puzzle below, hitting <ENTER> after each number:\n");
     outputLine(cols);
     for ( i=0 ; i<rows ; i++ ) {
         inputRow(&(suduku[i*rows]),cols);
@@ -45,11 +45,12 @@ void inputSuduku(US *suduku, US rows, US cols) {
 };
 
 void inputRow(US *row, US cols) {
-    US j;
-    printf("|│");
+    US j, c, chars;
+    printf("||");
     for (j=0 ; j<cols ; j++) {
         printf(" ");
-        scanf(" %hu ", &(row[j]));
+        chars = scanf(" %hu ", &(row[j]));
+        printf("%c",08); //backspace to remove the newline char
         printf(" │");
     };
     printf("|");
@@ -66,7 +67,7 @@ void outputSuduku (US* suduku, US rows, US cols) {
 
 void outputLine(US cols) { //perhaps add a second argument for double lines?
     US i;
-    for ( i = 0 ; i<cols ; i++ ) {
+    for ( i = 0 ; i<cols*4 ; i++ ) {
         printf("─");
     }
     printf("\n");

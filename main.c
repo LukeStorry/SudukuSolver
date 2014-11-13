@@ -48,7 +48,7 @@ void inputSuduku(US *suduku, US rows, US cols) {
 void inputRow (US *row, US cols) {
     US j, c, chars;
     for (j=0 ; j<cols ; j++) {
-        outputRow(*row,j);
+        outputRow(row,j);
         chars = scanf(" %hu ", &(row[j]));
         printf("\33[2K\r"); //VT100 code to erase previous line
     };

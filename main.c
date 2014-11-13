@@ -31,6 +31,7 @@ void inputSize(US *rows, US *cols) {
     scanf("%hu",rows);
     printf("How many columns does the suduku have? ");
     scanf("%hu",cols);
+    printf("\n");
 };
 
 void inputSuduku(US *suduku, US rows, US cols) {
@@ -44,15 +45,13 @@ void inputSuduku(US *suduku, US rows, US cols) {
     printf("Thanks!");
 };
 
-void inputRow(US *row, US cols) {
+void inputRow (US *row, US cols) {
     US j, c, chars;
-    printf("||");
     for (j=0 ; j<cols ; j++) {
-        printf(" ");
+        outputRow(*row,j);
         chars = scanf(" %hu ", &(row[j]));
-        printf("\b │"); //backspace to remove the newline char
+        printf("\33[2K\r"); //VT100 code to erase previous line
     };
-    printf("|");
 };
 
 void outputSuduku (US* suduku, US rows, US cols) {
@@ -64,7 +63,7 @@ void outputSuduku (US* suduku, US rows, US cols) {
     };
 };
 
-void outputLine(US cols) { //perhaps add a second argument for double lines?
+void outputLine (US cols) { //perhaps add a second argument for double lines?
     US i;
     for ( i = 0 ; i<cols*4 ; i++ ) {
         printf("─");
@@ -72,7 +71,7 @@ void outputLine(US cols) { //perhaps add a second argument for double lines?
     printf("\n");
 };
 
-void outputRow(US* row, US cols) {
+void outputRow (US* row, US cols) {
     US j;
     printf("||");
     for (j=0 ; j<cols ; j++) {

@@ -39,10 +39,10 @@ void inputSuduku(int *suduko, int rows, int cols) {
     printf("Please enter your suduko puzzle below, row by row:\n");
     outputLine(cols);
     for ( i=0 ; i<rows ; i++ ) {
-        inputRow(*suduko[i*rows],cols);
+        inputRow(suduko[i*rows],cols);
         outputLine(cols)
     };
-    Thanks!
+    printf("Thanks!")
 };
 
 void inputRow(int *row, int cols) {
@@ -50,13 +50,13 @@ void inputRow(int *row, int cols) {
     printf("|│");
     for (j=0 ; j<cols ; j++) {
         printf(" ");
-        scanf(" %2u ", row[j])
+        scanf(" %2u ", row[j]);
         printf(" │");
     };
     printf("|");
 };
 
-void outputSuduku (int* suduko, int rows, int cols) {
+void outputSuduku (int* suduku, int rows, int cols) {
     unsigned short i;
     outputLine(cols);
     for ( i=0 ; i<rows ; i++ ) {

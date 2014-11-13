@@ -1,4 +1,5 @@
-SudukoSolver
+SudukuSolver
 ============
 
-Just a few attempts at a really inefficient suduko solver
+An attempt to make a basic suduku solver in C.
+Currently just doing the basic IO, will move onto adding in method functions later.

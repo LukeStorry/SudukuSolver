@@ -39,10 +39,10 @@ void inputSuduku(int *suduko, int rows, int cols) {
     printf("Please enter your suduko puzzle below, row by row:\n");
     outputLine(cols);
     for ( i=0 ; i<rows ; i++ ) {
-        inputRow(suduko[i*rows],cols);
-        outputLine(cols)
+        inputRow(&(suduko[i*rows]),cols);
+        outputLine(cols);
     };
-    printf("Thanks!")
+    printf("Thanks!");
 };
 
 void inputRow(int *row, int cols) {

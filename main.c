@@ -50,8 +50,7 @@ void inputRow(US *row, US cols) {
     for (j=0 ; j<cols ; j++) {
         printf(" ");
         chars = scanf(" %hu ", &(row[j]));
-        printf("%c",08); //backspace to remove the newline char
-        printf(" │");
+        printf("\b │"); //backspace to remove the newline char
     };
     printf("|");
 };

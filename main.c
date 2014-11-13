@@ -8,12 +8,14 @@
 
 typedef unsigned short US;
 
-void inputSize(US *rows, US *cols);
-void inputSuduku(US *suduku, US rows, US cols);
-void inputRow(US *row, US cols);
+void inputSize (US *rows, US *cols);
+void inputSuduku (US *suduku, US rows, US cols);
+void inputRow (US *row, US cols);
 void outputSuduku (US* suduku, US rows, US cols);
 void outputLine(US cols); 
-void outputRow(US* row, US cols);
+void outputRow (US* row, US cols);
+void outputPartSuduku (US *suduku, US cols, US currentRow, US currentCol);
+
 
 int main (void) {
     US rows, cols, *suduku;
@@ -25,7 +27,7 @@ int main (void) {
     return 0;
 }
 
-void inputSize(US *rows, US *cols) {
+void inputSize (US *rows, US *cols) {
     printf("How many rows does the suduku have? ");
     scanf("%hu",rows);
     printf("How many columns does the suduku have? ");
@@ -33,19 +35,31 @@ void inputSize(US *rows, US *cols) {
     printf("\n");
 };
 
-void inputSuduku(US *suduku, US rows, US cols) {
+void inputSuduku (US *suduku, US rows, US cols) {
     US i, j;
     outputLine(cols);
     for ( i=0 ; i<rows ; i++ ) {
         for (j=0 ; j<cols ; j++) {
             system("clear");
             printf("Please enter your suduku puzzle below, hitting <ENTER> after each number:\n");
-            outputSuduku(suduku,i+1,j);
-            scanf("%hu", &(suduku[i*cols+j]));
+	    outputPartSuduku(suduku,cols, i, j);
+	    scanf("%hu", &(suduku[i*cols+j]));
 	};
     };
     printf("Thanks!");
 };
+
+
+void outputPartSuduku (US *suduku, US cols, US currentRow, US currentCol) {
+    US k;
+    for ( k=0 ; k < currentRow ; k++) {
+	outputLine(cols); outputLine(cols);
+	outputRow(&(suduku[k*cols]), cols);
+    };
+    outputLine(cols);
+    outputRow(&(suduku[currentRow*cols]), currentCol);
+};
+         
 
 /* not needed, all in one function now
 void inputRow (US *row, US cols) {

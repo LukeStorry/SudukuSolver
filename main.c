@@ -7,35 +7,34 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-void inputSize(int *rows, int *cols);
-void inputSuduku(int *suduku, int rows, int cols);
-void inputRow(int *row, int cols);
-void outputSuduku (int* suduku, int rows, int cols);
-void outputLine(int cols); 
-void outputRow(int* row, int cols);
+typedef unsigned short US;
+
+void inputSize(US *rows, US *cols);
+void inputSuduku(US *suduku, US rows, US cols);
+void inputRow(US *row, US cols);
+void outputSuduku (US* suduku, US rows, US cols);
+void outputLine(US cols); 
+void outputRow(US* row, US cols);
 
 int main (void) {
-    int rows, cols, *suduku;
+    US rows, cols, *suduku;
     inputSize(&rows,&cols);
+    suduku = malloc(rows*cols*sizeof(US));
     inputSuduku(suduku,rows, cols);
     printf("\n\n\n TestL: is this it? \n\n");
     outputSuduku(suduku,rows,cols);
     return 0;
 }
 
-void inputSize(int *rows, int *cols) {
-    unsigned short input;
+void inputSize(US *rows, US *cols) {
     printf("How many rows does the suduku have? ");
-    scanf(" %2u ",input);
-    *rows = input;
+    scanf(" %hu ",rows);
     printf("How many columns does the suduku have? ");
-    scanf(" %2u ",input);
-    *cols = input;
+    scanf(" %hu ",cols);
 };
 
-void inputSuduku(int *suduku, int rows, int cols) {
-    unsigned short i;
-    suduku = malloc(rows*cols*sizeof(int));
+void inputSuduku(US *suduku, US rows, US cols) {
+    US i;
     printf("Please enter your suduku puzzle below, row by row:\n");
     outputLine(cols);
     for ( i=0 ; i<rows ; i++ ) {
@@ -45,19 +44,19 @@ void inputSuduku(int *suduku, int rows, int cols) {
     printf("Thanks!");
 };
 
-void inputRow(int *row, int cols) {
-    unsigned short j;
+void inputRow(US *row, US cols) {
+    US j;
     printf("|│");
     for (j=0 ; j<cols ; j++) {
         printf(" ");
-        scanf(" %2u ", row[j]);
+        scanf(" %hu ", &(row[j]));
         printf(" │");
     };
     printf("|");
 };
 
-void outputSuduku (int* suduku, int rows, int cols) {
-    unsigned short i;
+void outputSuduku (US* suduku, US rows, US cols) {
+    US i;
     outputLine(cols);
     for ( i=0 ; i<rows ; i++ ) {
         outputRow(suduku+i, cols);
@@ -65,16 +64,16 @@ void outputSuduku (int* suduku, int rows, int cols) {
     };
 };
 
-void outputLine(int cols) { //perhaps add a second argument for double lines?
-    unsigned short i;
+void outputLine(US cols) { //perhaps add a second argument for double lines?
+    US i;
     for ( i = 0 ; i<cols ; i++ ) {
         printf("─");
     }
     printf("\n");
 };
 
-void outputRow(int* row, int cols) {
-    unsigned short j;
+void outputRow(US* row, US cols) {
+    US j;
     printf("||");
     for (j=0 ; j<cols ; j++) {
             printf(" %u |",row[j]);

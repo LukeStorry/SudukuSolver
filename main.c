@@ -7,11 +7,12 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-
 void inputSize(int *rows, int *cols);
-int *inputSuduko(int *suduko, int rows, int cols);
-void ouputLine(int cols);
-void inputRow(int cols);
+void inputSuduku(int *suduko, int rows, int cols);
+void inputRow(int *row, int cols);
+void outputSuduku (int* suduko, int rows, int cols);
+void outputLine(int cols); 
+void outputRow(int* row, int cols);
 
 int main (void) {
     int rows, cols;
@@ -32,28 +33,20 @@ void inputSize(int *rows, int *cols) {
     *cols = input;
 };
 
-int *inputSuduku(int *suduko, int rows, int cols) {
+void inputSuduku(int *suduko, int rows, int cols) {
     unsigned short i;
     suduko = malloc(rows*cols*sizeof(int));
     printf("Please enter your suduko puzzle below, row by row:\n");
     outputLine(cols);
     for ( i=0 ; i<rows ; i++ ) {
-        suduko[i*cols] = inputRow(cols);
+        inputRow(*suduko[i*rows],cols);
         outputLine(cols)
     };
     Thanks!
 };
 
-void outputLine(int cols) { //perhaps add a second argument for double lines?
-    unsigned short i;
-    for ( i = 0 ; i<cols ; i++ ) {
-        printf("─");
-    }
-    printf("\n");
-};
-
-int *inputRow(int cols) {
-    unsigned short j, *row;
+void inputRow(int *row, int cols) {
+    unsigned short j;
     printf("|│");
     for (j=0 ; j<cols ; j++) {
         printf(" ");
@@ -61,7 +54,6 @@ int *inputRow(int cols) {
         printf(" │");
     };
     printf("|");
-    return row;
 };
 
 void outputSuduku (int* suduko, int rows, int cols) {
@@ -71,6 +63,14 @@ void outputSuduku (int* suduko, int rows, int cols) {
         outputRow(suduku+i, cols);
         outputLine(cols);
     };
+};
+
+void outputLine(int cols) { //perhaps add a second argument for double lines?
+    unsigned short i;
+    for ( i = 0 ; i<cols ; i++ ) {
+        printf("─");
+    }
+    printf("\n");
 };
 
 void outputRow(int* row, int cols) {

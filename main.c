@@ -7,6 +7,28 @@
 #include <stdlib.h>
 #include <ctype.h>
 
+
+void inputSize(int *n, int *cols);
+int *inputSud(int *suduko, int n, int cols);
+ 
+
 int main (void) {
+    int n, cols;
+    int *suduko;
+    inputSize(&n,&cols);
+    inputSud(suduko,n, cols);
+ 
     return 0;
 }
+
+void inputSize(int *n, int *cols) {
+    
+    
+};
+
+int *inputSud(int *suduko, int n, int m) {
+    int ;
+    suduko = malloc(n*m*sizeof(int));
+    printf("Please enter your suduko puzzle below, row by row");
+    for (i=0, i<)
+    intpoutrow(*)

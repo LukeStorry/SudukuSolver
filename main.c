@@ -50,7 +50,7 @@ void inputRow (US *row, US cols) {
     for (j=0 ; j<cols ; j++) {
         outputRow(row,j);
         chars = scanf(" %hu ", &(row[j]));
-        printf("\33[2K\r"); //VT100 code to erase previous line
+        printf("%c[2K", 27); //VT100 code to erase previous line
     };
 };
 

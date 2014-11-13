@@ -17,7 +17,7 @@ int main (void) {
     int rows, cols;
     int *suduko;
     inputSize(&rows,&cols);
-    inputSud(suduko,n, cols);
+    inputSud(suduko,rows, cols);
  
     return 0;
 }
@@ -34,7 +34,7 @@ void inputSize(int *rows, int *cols) {
 
 int *inputSuduku(int *suduko, int rows, int cols) {
     unsigned short i;
-    suduko = malloc(n*m*sizeof(int));
+    suduko = malloc(rows*cols*sizeof(int));
     printf("Please enter your suduko puzzle below, row by row:\n");
     outputLine(cols);
     for ( i=0 ; i<rows ; i++ ) {
@@ -54,13 +54,13 @@ void outputLine(int cols) { //perhaps add a second argument for double lines?
 
 int *inputRow(int cols) {
     unsigned short j, *row;
-    printf("|│")
+    printf("|│");
     for (j=0 ; j<cols ; j++) {
-        printf(" ")
+        printf(" ");
         scanf(" %2u ", row[j])
-        printf(" │")
+        printf(" │");
     };
-    printf("|")
+    printf("|");
     return row;
 };
 
@@ -75,9 +75,9 @@ void outputSuduku (int* suduko, int rows, int cols) {
 
 void outputRow(int* row, int cols) {
     unsigned short j;
-    printf("||")
+    printf("||");
     for (j=0 ; j<cols ; j++) {
-            printf(" %u |",row[j])
+            printf(" %u |",row[j]);
         };
-    printf("|")
+    printf("|");
 };

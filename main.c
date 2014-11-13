@@ -15,11 +15,11 @@ void outputLine(int cols);
 void outputRow(int* row, int cols);
 
 int main (void) {
-    int rows, cols;
-    int *suduko;
+    int rows, cols, *suduko;
     inputSize(&rows,&cols);
-    inputSud(suduko,rows, cols);
- 
+    inputSuduku(suduko,rows, cols);
+    printf("\n\n\n TestL: is this it? \n\n")
+    outputSuduku(suduku,rows,cols)
     return 0;
 }
 

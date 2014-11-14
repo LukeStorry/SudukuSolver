@@ -66,7 +66,7 @@ void outputSuduku (US* suduku, US rows, US cols) {
     US i;
     outputLine(cols);
     for ( i=0 ; i<rows ; i++ ) {
-        outputRow(suduku+i, cols);
+        outputRow(suduku[i*cols], cols);
         outputLine(cols);
     };
 };
@@ -74,6 +74,7 @@ void outputSuduku (US* suduku, US rows, US cols) {
 
 void outputLine (US cols) { //perhaps add a second argument for double lines?
     US i;
+    printf("\n");
     for ( i = 0 ; i<cols*4 ; i++ ) {
         printf("─");
     }

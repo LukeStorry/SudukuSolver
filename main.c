@@ -66,7 +66,7 @@ void outputSuduku (US* suduku, US rows, US cols) {
     US i;
     outputLine(cols);
     for ( i=0 ; i<rows ; i++ ) {
-        outputRow(suduku[i*cols], cols);
+        outputRow(&suduku[i*cols], cols);
         outputLine(cols);
     };
 };

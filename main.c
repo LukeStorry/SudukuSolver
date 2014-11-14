@@ -8,6 +8,7 @@
 
 typedef unsigned short US;
 
+void intro (void);
 void inputSize (US *rows, US *cols);
 void inputSuduku (US *suduku, US rows, US cols);
 void inputRow (US *row, US cols);
@@ -19,13 +20,23 @@ void outputPartSuduku (US *suduku, US cols, US currentRow, US currentCol);
 
 int main (void) {
     US rows, cols, *suduku;
-    inputSize(&rows,&cols);
+    intro();
+    inputSize(&rows, &cols);
     suduku = malloc(rows*cols*sizeof(US));
     inputSuduku(suduku,rows, cols);
     printf("\n\n\n TestL: is this it? \n\n");
     outputSuduku(suduku,rows,cols);
     return 0;
 }
+
+
+void intro (void) {
+    system("clear");
+    printf("Welcome to the suduku solver\n\n");
+    printf("A work in progress... \n");
+    printf("Written by Luke Storry\n\n\n\n");
+};
+
 
 void inputSize (US *rows, US *cols) {
     printf("How many rows does the suduku have? ");
@@ -56,6 +67,7 @@ void outputPartSuduku (US *suduku, US cols, US currentRow, US currentCol) {
     outputLine(cols);
     for ( k=0 ; k < currentRow ; k++) {
 	 outputRow(&(suduku[k*cols]), cols);
+	 printf("\b");
 	 outputLine(cols);
     };
     outputRow(&(suduku[currentRow*cols]), currentCol);
@@ -75,7 +87,7 @@ void outputSuduku (US* suduku, US rows, US cols) {
 void outputLine (US cols) { //perhaps add a second argument for double lines?
     US i;
     printf("\n");
-    for ( i = 0 ; i<cols*4 ; i++ ) {
+    for ( i = 0 ; i<cols*5 ; i++ ) {
         printf("─");
     }
     printf("\n");
@@ -84,7 +96,7 @@ void outputLine (US cols) { //perhaps add a second argument for double lines?
 
 void outputRow (US* row, US cols) {
     US j;
-    printf("||");
+    printf("|");
     for (j=0 ; j<cols ; j++) {
             printf(" %hu |",row[j]);
         };

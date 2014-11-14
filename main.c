@@ -6,12 +6,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+typedef enum { false, true } bool;; //because I dont want to type the std99 gcc tag every time
+
 typedef unsigned short US;
 
 void intro (void);
+
 void inputSize (US *rows, US *cols);
 void inputSuduku (US *suduku, US rows, US cols);
 void inputRow (US *row, US cols);
+
+bool validateInput(US num, US cols, US rows);
+
 void outputSuduku (US* suduku, US rows, US cols);
 void outputLine(US cols); 
 void outputRow (US* row, US cols);
@@ -46,6 +52,9 @@ void intro (void) {
     
     
     printf("\n\n  A work in progress... \n\n         Written by Luke Storry\n\n\n\n");
+    printf("Hit <ENTER> to begin!");
+    getchar(); //just to wait for <ENTER>
+
 };
 
 
@@ -60,18 +69,36 @@ void inputSize (US *rows, US *cols) {
 
 void inputSuduku (US *suduku, US rows, US cols) {
     US i, j;
+    bool inputOK = false;
     outputLine(cols);
     for ( i=0 ; i<rows ; i++ ) {
         for (j=0 ; j<cols ; j++) {
-            system("clear");
-	    intro();
-	    printf("Please enter your suduku puzzle below, hitting <ENTER> after each number:\n");
-	    outputPartSuduku(suduku,cols, i, j);
-	    scanf("%hu", &(suduku[i*cols+j]));
+            do {
+		system("clear");
+		intro();
+		printf("Please enter your suduku puzzle below, hitting <ENTER> after each number:\n");
+		outputPartSuduku(suduku,cols, i, j);
+		scanf("%hu", &(suduku[i*cols+j]));
+		inputOK = validateInput(suduku[i*cols+j],rows,cols);
+	    } while (inputOK == false);
 	};
     };
     printf("Thanks!");
 };
+
+bool validateInput(US num, US rows, US cols) {
+    bool valid;
+    if (num < rows || num < cols) {
+	valid = true;
+    } else {
+	valid = false;
+	printf("\n\n That was not a valid input. Press <ENTER> to try again.");
+	getchar(); //just to wait for <ENTER>
+    };
+    return valid;
+};
+
+
 
 
 void outputPartSuduku (US *suduku, US cols, US currentRow, US currentCol) {

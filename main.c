@@ -131,7 +131,7 @@ void outputSuduku (US* suduku, US rows, US cols) {
 void outputLine (US cols) { //perhaps add a second argument for double lines?
     US i;
     printf("\n");
-    for ( i = 0 ; i<cols*5 ; i++ ) {
+    for ( i = 0 ; i<cols*5; i++ ) {
         printf("─");
     }
     printf("\n");

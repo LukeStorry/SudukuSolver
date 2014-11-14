@@ -1,5 +1,15 @@
 //These functions read in and output suduku files to/from BASH.
 
+#include <stdio.h>
+#include <stdlib.h>
+
+
+typedef enum { false, true } bool;; //because I dont want to type the std99 gcc tag every time
+
+typedef unsigned short US;
+
+#include "IO.h"
+
 void inputSuduku (US *suduku, US rows, US cols) {
     US i, j;
     inputSize(&rows, &cols);

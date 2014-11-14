@@ -32,7 +32,26 @@ int main (void) {
 
 void intro (void) {
     system("clear");
+
+    printf("______/\\\\\\\\\\\____/\\\________/\\\__/\\\\\\\\\\\\_____/\\\________/\\\__/\\\________/\\\__/\\\________/\\\_        \n");
+    printf(" ____/\\\/////////\\\_\/\\\_______\/\\\_\/\\\////////\\\__\/\\\_______\/\\\_\/\\\_____/\\\//__\/\\\_______\/\\\_       \n");
+    printf("   __\//\\\______\///__\/\\\_______\/\\\_\/\\\______\//\\\_\/\\\_______\/\\\_\/\\\__/\\\//_____\/\\\_______\/\\\_      \n");
+    printf("    ___\////\\\_________\/\\\_______\/\\\_\/\\\_______\/\\\_\/\\\_______\/\\\_\/\\\\\\//\\\_____\/\\\_______\/\\\_     \n");
+    printf("     ______\////\\\______\/\\\_______\/\\\_\/\\\_______\/\\\_\/\\\_______\/\\\_\/\\\//_\//\\\____\/\\\_______\/\\\_    \n");
+    printf("      _________\////\\\___\/\\\_______\/\\\_\/\\\_______\/\\\_\/\\\_______\/\\\_\/\\\____\//\\\___\/\\\_______\/\\\_   \n");   
+    printf("       __/\\\______\//\\\__\//\\\______/\\\__\/\\\_______/\\\__\//\\\______/\\\__\/\\\_____\//\\\__\//\\\______/\\\__  \n");
+    printf("        _\///\\\\\\\\\\\/____\///\\\\\\\\\/___\/\\\\\\\\\\\\/____\///\\\\\\\\\/___\/\\\______\//\\\__\///\\\\\\\\\/___ \n");
+    printf("         ___\///////////________\/////////_____\////////////________\/////////_____\///________\///_____\/////////_____\n");
+    
+    
     printf("Welcome to the suduku solver\n\n");
+
+    printf("");
+    printf("duku solver\n\n");
+    printf("Welcome to the suduku solver\n\n");
+    printf("Welcome to the suduku solver\n\n");
+    printf("Welcome to the suduku solver\n\n");
+    
     printf("A work in progress... \n");
     printf("Written by Luke Storry\n\n\n\n");
 };
@@ -53,7 +72,8 @@ void inputSuduku (US *suduku, US rows, US cols) {
     for ( i=0 ; i<rows ; i++ ) {
         for (j=0 ; j<cols ; j++) {
             system("clear");
-            printf("Please enter your suduku puzzle below, hitting <ENTER> after each number:\n");
+	    intro();
+	    printf("Please enter your suduku puzzle below, hitting <ENTER> after each number:\n");
 	    outputPartSuduku(suduku,cols, i, j);
 	    scanf("%hu", &(suduku[i*cols+j]));
 	};

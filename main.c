@@ -92,12 +92,15 @@ void inputSuduku (US *suduku, US rows, US cols) {
 
 
 bool validateInput(US *ptr, US rows, US cols) {
+    int c;
     bool valid = false;
     if (scanf("%2hu", ptr) != 1 || *ptr < 0 || (*ptr > rows && *ptr > cols)) {
+	while((c = getchar()) != '\n'); //flush input stream	
 	printf("\n\n            That was not a valid input. Press <ENTER> to try again.");
-	getchar(); getchar(); getchar(); //just to wait for <ENTER>
+	getchar(); //wait for <ENTER>
     } else {
 	valid = true;
+	while((c = getchar()) != '\n'); //flush input stream	
     };
     return valid;
 };

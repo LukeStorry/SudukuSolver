@@ -86,13 +86,14 @@ void inputSuduku (US *suduku, US rows, US cols) {
 };
 
 bool validateInput(US num, US rows, US cols) {
-    bool valid = false;
-    if ((num <= rows || num <= cols) && (num > 0)) {
-	valid = true;
-    };
-    if (valid == false) {
+    printf("test");
+    bool valid;
+    if (num > rows || num > cols || num < 0) {
+	valid = false;
 	printf("\n\n That was not a valid input. Press <ENTER> to try again.");
 	getchar(); getchar(); //just to wait for <ENTER>
+    } else {
+	valid = true;
     };
     return valid;
 };

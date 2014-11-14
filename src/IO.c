@@ -2,14 +2,18 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-
-
-typedef enum { false, true } bool;; //because I dont want to type the std99 gcc tag every time
+#include <stdbool.h>
 
 typedef unsigned short US;
 
-#include "IO.h"
-#include "textybits.h"
+static bool validateInput(US *ptr, US cols, US rows);
+static void outputLine(US cols);
+static void outputRow (US* row, US cols);
+static void outputPartSuduku (US *suduku, US cols, US currentRow, US currentCol);
+
+
+#include "../include/IO.h"
+#include "../include/textybits.h"
 
 void inputSuduku (US *suduku, US rows, US cols) {
     US i, j;
@@ -20,7 +24,6 @@ void inputSuduku (US *suduku, US rows, US cols) {
 		intro();
 		printf("Please enter your suduku puzzle below, hitting <ENTER> after each number:\n");
 		outputPartSuduku(suduku,cols, i, j);
-
 	    } while (validateInput(&(suduku[i*cols+j]),rows,cols) == false);;
 	};
     };
@@ -48,7 +51,7 @@ void inputSize (US *rows, US *cols) {
 static bool validateInput(US *ptr, US rows, US cols) {
     int c;
     bool valid = false;
-    if (scanf("%2hu", ptr) != 1 || *ptr < 0 || (*ptr > rows && *ptr > cols)) {
+    if (scanf("%2hu", ptr) != 1 || (*ptr > rows && *ptr > cols)) {
 	while((c = getchar()) != '\n'); //flush input stream	
 	printf("\n\n            That was not a valid input. Press <ENTER> to try again.");
 	getchar(); //wait for <ENTER>

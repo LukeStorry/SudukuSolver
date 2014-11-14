@@ -9,8 +9,9 @@
 typedef enum { false, true } bool;; //because I dont want to type the std99 gcc tag every time
 typedef unsigned short int US; // to save typing it out every time.
 
-#include "IO.h"
-#include "textybits.h"
+#include "../include/IO.h"
+
+#include "../include/textybits.h"
 
 
 int main (void) {

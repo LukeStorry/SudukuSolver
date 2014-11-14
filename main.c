@@ -6,12 +6,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+typedef enum { false, true } bool;; //because I dont want to type the std99 gcc tag every time
+
 typedef unsigned short US;
 
 void intro (void);
+
 void inputSize (US *rows, US *cols);
 void inputSuduku (US *suduku, US rows, US cols);
 void inputRow (US *row, US cols);
+
+bool validateInput(US *ptr, US cols, US rows);
+
 void outputSuduku (US* suduku, US rows, US cols);
 void outputLine(US cols); 
 void outputRow (US* row, US cols);
@@ -21,10 +27,11 @@ void outputPartSuduku (US *suduku, US cols, US currentRow, US currentCol);
 int main (void) {
     US rows, cols, *suduku;
     intro();
+    printf("Hit <ENTER> to begin!"); getchar(); //getchar captures the enter>
     inputSize(&rows, &cols);
     suduku = malloc(rows*cols*sizeof(US));
     inputSuduku(suduku,rows, cols);
-    printf("\n\n\n TestL: is this it? \n\n");
+    printf("\n\n\n    Output:n\n");
     outputSuduku(suduku,rows,cols);
     return 0;
 }
@@ -50,10 +57,18 @@ void intro (void) {
 
 
 void inputSize (US *rows, US *cols) {
-    printf("How many rows does the suduku have? ");
-    scanf("%hu",rows);
-    printf("How many columns does the suduku have? ");
-    scanf("%hu",cols);
+    do {
+	system("clear");
+	intro();
+	printf("How may rows does the suduku have? ");
+    } while (validateInput(rows,100,100) == false);
+    
+    do {
+	system("clear");
+	intro();
+	printf("How may rows does the suduku have? %hu\n", *rows);
+	printf("How many columns does the suduku have? ");
+    } while (validateInput(cols,100,100) == false); 
     printf("\n");
 };
 
@@ -63,14 +78,31 @@ void inputSuduku (US *suduku, US rows, US cols) {
     outputLine(cols);
     for ( i=0 ; i<rows ; i++ ) {
         for (j=0 ; j<cols ; j++) {
-            system("clear");
-	    intro();
-	    printf("Please enter your suduku puzzle below, hitting <ENTER> after each number:\n");
-	    outputPartSuduku(suduku,cols, i, j);
-	    scanf("%hu", &(suduku[i*cols+j]));
+            do {
+		system("clear");
+		intro();
+		printf("Please enter your suduku puzzle below, hitting <ENTER> after each number:\n");
+		outputPartSuduku(suduku,cols, i, j);
+
+	    } while (validateInput(&(suduku[i*cols+j]),rows,cols) == false);;
 	};
     };
     printf("Thanks!");
+};
+
+
+bool validateInput(US *ptr, US rows, US cols) {
+    int c;
+    bool valid = false;
+    if (scanf("%2hu", ptr) != 1 || *ptr < 0 || (*ptr > rows && *ptr > cols)) {
+	while((c = getchar()) != '\n'); //flush input stream	
+	printf("\n\n            That was not a valid input. Press <ENTER> to try again.");
+	getchar(); //wait for <ENTER>
+    } else {
+	valid = true;
+	while((c = getchar()) != '\n'); //flush input stream	
+    };
+    return valid;
 };
 
 
@@ -99,7 +131,7 @@ void outputSuduku (US* suduku, US rows, US cols) {
 void outputLine (US cols) { //perhaps add a second argument for double lines?
     US i;
     printf("\n");
-    for ( i = 0 ; i<cols*5 ; i++ ) {
+    for ( i = 0 ; i<cols*5; i++ ) {
         printf("─");
     }
     printf("\n");

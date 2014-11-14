@@ -3,13 +3,13 @@
 
 CC     = gcc 
 FLAGS  = -std=gnu99 -Iinclude
-CFLAGS = -Wall -Wextra -pedantic -O3 -combine -fwhole-program
+WFLAGS = -Wall -Wextra -pedantic -O3 -combine -fwhole-program
 
 
 TARGET = SudukuSolver
 SOURCES = $(shell echo src/*.c)
 HEADERS = $(shell echo include/*.h)
-#OBJECTS = $(SOURCES:.c=.o)
+OBJECTS = $(SOURCES:.c=.o)
 
 PREFIX = $(DESTDIR)/usr/local
 BINDIR = $(PREFIX)/bin
@@ -19,11 +19,10 @@ BINDIR = $(PREFIX)/bin
 all:$(TARGET)
 
 $(TARGET): $(OBJECTS) $(HEADERS)
-	$(CC) $(FLAGS) -o $(TARGET) $(SOURCES)
+	$(CC) $(FLAGS) -o $(TARGET) $(OBJECTS)
 
-warn: $(SOURCES) $(HEADERS) $(COMMON)
-  $(CC) $(FLAGS) $(CFLAGS) $(RELEASEFLAGS) -o $(TARGET) $(SOURCES)
-
+warn: $(SOURCES) $(HEADERS)
+	$(CC) $(FLAGS) $(WFLAGS) -o $(TARGET) $(SOURCES)
 
 clean:
 	-rm -f $(OBJECTS)

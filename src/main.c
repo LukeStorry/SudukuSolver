@@ -6,11 +6,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef enum { false, true } bool;; //because I dont want to type the std99 gcc tag every time
 typedef unsigned short int US; // to save typing it out every time.
 
 #include "../include/IO.h"
-
 #include "../include/textybits.h"
 
 
@@ -27,5 +25,5 @@ int main (void) {
     printf("\n\n\n    Output:n\n");
     outputSuduku(suduku,rows,cols);
     return 0;
-};
+}
 

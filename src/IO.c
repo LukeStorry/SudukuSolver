@@ -28,7 +28,7 @@ void inputSuduku (US *suduku, US rows, US cols) {
 	};
     };
     printf("Thanks!");
-};
+}
 
 
 void inputSize (US *rows, US *cols) {
@@ -45,7 +45,7 @@ void inputSize (US *rows, US *cols) {
 	printf("How many columns does the suduku have? ");
     } while (validateInput(cols,100,100) == false); 
     printf("\n");
-};
+}
 
 
 static bool validateInput(US *ptr, US rows, US cols) {
@@ -60,7 +60,7 @@ static bool validateInput(US *ptr, US rows, US cols) {
 	while((c = getchar()) != '\n'); //flush input stream	
     };
     return valid;
-};
+}
 
 
 static void outputLine (US cols) { //perhaps add a second argument for double lines?
@@ -70,7 +70,7 @@ static void outputLine (US cols) { //perhaps add a second argument for double li
         printf("─");
     }
     printf("\n");
-};
+}
 
 
 static void outputPartSuduku (US *suduku, US cols, US currentRow, US currentCol) {
@@ -82,7 +82,7 @@ static void outputPartSuduku (US *suduku, US cols, US currentRow, US currentCol)
 	 outputLine(cols);
     };
     outputRow(&(suduku[currentRow*cols]), currentCol);
-};
+}
        
         
 void outputSuduku (US* suduku, US rows, US cols) {
@@ -92,7 +92,7 @@ void outputSuduku (US* suduku, US rows, US cols) {
         outputRow(&suduku[i*cols], cols);
         outputLine(cols);
     };
-};
+}
 
 
 static void outputRow (US* row, US cols) {
@@ -101,4 +101,4 @@ static void outputRow (US* row, US cols) {
     for (j=0 ; j<cols ; j++) {
             printf(" %hu |",row[j]);
         };
-};
+}

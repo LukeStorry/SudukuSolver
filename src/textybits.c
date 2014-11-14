@@ -1,6 +1,7 @@
 //this function is used by all files, so to prevent "-Wall" errors, it has to be in it's own file.
 
 #include <stdio.h>
+#include <stdlib.h>
 
 void intro (void) {
     system("clear");
@@ -18,5 +19,5 @@ void intro (void) {
     
     
     printf("\n\n  A work in progress... \n\n         Written by Luke Storry\n\n\n\n");
-};
+}
 

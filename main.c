@@ -35,6 +35,7 @@ void inputSize (US *rows, US *cols) {
     printf("\n");
 };
 
+
 void inputSuduku (US *suduku, US rows, US cols) {
     US i, j;
     outputLine(cols);
@@ -52,26 +53,15 @@ void inputSuduku (US *suduku, US rows, US cols) {
 
 void outputPartSuduku (US *suduku, US cols, US currentRow, US currentCol) {
     US k;
-    for ( k=0 ; k < currentRow ; k++) {
-	outputLine(cols); outputLine(cols);
-	outputRow(&(suduku[k*cols]), cols);
-    };
     outputLine(cols);
+    for ( k=0 ; k < currentRow ; k++) {
+	 outputRow(&(suduku[k*cols]), cols);
+	 outputLine(cols);
+    };
     outputRow(&(suduku[currentRow*cols]), currentCol);
 };
-         
-
-/* not needed, all in one function now
-void inputRow (US *row, US cols) {
-    US j, c, chars;
-    for (j=0 ; j<cols ; j++) {
-        outputRow(row,j);
-        chars = scanf(" %hu ", &(row[j]));
-        printf("%c[2K", 27); //VT100 code to erase previous line
-    };
-};
-*/
-
+       
+        
 void outputSuduku (US* suduku, US rows, US cols) {
     US i;
     outputLine(cols);
@@ -81,6 +71,7 @@ void outputSuduku (US* suduku, US rows, US cols) {
     };
 };
 
+
 void outputLine (US cols) { //perhaps add a second argument for double lines?
     US i;
     for ( i = 0 ; i<cols*4 ; i++ ) {
@@ -89,11 +80,11 @@ void outputLine (US cols) { //perhaps add a second argument for double lines?
     printf("\n");
 };
 
+
 void outputRow (US* row, US cols) {
     US j;
     printf("||");
     for (j=0 ; j<cols ; j++) {
-            printf(" %u |",row[j]);
+            printf(" %hu |",row[j]);
         };
-    printf("|");
 };

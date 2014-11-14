@@ -9,11 +9,10 @@ typedef enum { false, true } bool;; //because I dont want to type the std99 gcc 
 typedef unsigned short US;
 
 #include "IO.h"
+#include "textybits.h"
 
 void inputSuduku (US *suduku, US rows, US cols) {
     US i, j;
-    inputSize(&rows, &cols);
-    suduku = malloc(rows*cols*sizeof(US));
     for ( i=0 ; i<rows ; i++ ) {
         for (j=0 ; j<cols ; j++) {
             do {

@@ -11,7 +11,6 @@ typedef unsigned short int US; // to save typing it out every time.
 #include "../include/IO.h"
 #include "../include/textybits.h"
 
-
 int main (void) {
     US rows, cols, *suduku;
     intro();

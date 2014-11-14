@@ -2,14 +2,14 @@
 #Credit to https://felixcrux.com/blog/creating-basic-makefile for an excellent tutorial
 
 CC     = gcc 
-FLAGS  = -std=gnu99 -Iinclude
+FLAGS  = -std=c99 -Iinclude
 WFLAGS = -Wall -Wextra -pedantic -O3 -combine -fwhole-program
 
 
 TARGET = SudukuSolver
 SOURCES = $(shell echo src/*.c)
 HEADERS = $(shell echo include/*.h)
-OBJECTS = $(SOURCES:.c=.o)
+#OBJECTS = $(SOURCES:.c=.o)
 
 PREFIX = $(DESTDIR)/usr/local
 BINDIR = $(PREFIX)/bin
@@ -18,8 +18,8 @@ BINDIR = $(PREFIX)/bin
 
 all:$(TARGET)
 
-$(TARGET): $(OBJECTS) $(HEADERS)
-	$(CC) $(FLAGS) -o $(TARGET) $(OBJECTS)
+$(TARGET): $(SOURCES) $(HEADERS)
+	$(CC) $(FLAGS) -o $(TARGET) $(SOURCES)
 
 warn: $(SOURCES) $(HEADERS)
 	$(CC) $(FLAGS) $(WFLAGS) -o $(TARGET) $(SOURCES)

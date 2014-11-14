@@ -27,10 +27,11 @@ void outputPartSuduku (US *suduku, US cols, US currentRow, US currentCol);
 int main (void) {
     US rows, cols, *suduku;
     intro();
+    printf("Hit <ENTER> to begin!"); getchar(); //getchar captures the enter>
     inputSize(&rows, &cols);
     suduku = malloc(rows*cols*sizeof(US));
     inputSuduku(suduku,rows, cols);
-    printf("\n\n\n TestL: is this it? \n\n");
+    printf("\n\n\n Test: is this it? \n\n");
     outputSuduku(suduku,rows,cols);
     return 0;
 }
@@ -52,13 +53,11 @@ void intro (void) {
     
     
     printf("\n\n  A work in progress... \n\n         Written by Luke Storry\n\n\n\n");
-    printf("Hit <ENTER> to begin!");
-    getchar(); //just to wait for <ENTER>
-
 };
 
 
 void inputSize (US *rows, US *cols) {
+    printf("\n\n");
     printf("How many rows does the suduku have? ");
     scanf("%hu",rows);
     printf("How many columns does the suduku have? ");
@@ -87,13 +86,13 @@ void inputSuduku (US *suduku, US rows, US cols) {
 };
 
 bool validateInput(US num, US rows, US cols) {
-    bool valid;
-    if (num < rows || num < cols) {
+    bool valid = false;
+    if ((num <= rows || num <= cols) && (num > 0)) {
 	valid = true;
-    } else {
-	valid = false;
+    };
+    if (valid == false) {
 	printf("\n\n That was not a valid input. Press <ENTER> to try again.");
-	getchar(); //just to wait for <ENTER>
+	getchar(); getchar(); //just to wait for <ENTER>
     };
     return valid;
 };

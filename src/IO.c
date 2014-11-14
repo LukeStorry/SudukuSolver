@@ -45,7 +45,7 @@ void inputSize (US *rows, US *cols) {
 };
 
 
-bool validateInput(US *ptr, US rows, US cols) {
+static bool validateInput(US *ptr, US rows, US cols) {
     int c;
     bool valid = false;
     if (scanf("%2hu", ptr) != 1 || *ptr < 0 || (*ptr > rows && *ptr > cols)) {
@@ -60,7 +60,7 @@ bool validateInput(US *ptr, US rows, US cols) {
 };
 
 
-void outputLine (US cols) { //perhaps add a second argument for double lines?
+static void outputLine (US cols) { //perhaps add a second argument for double lines?
     US i;
     printf("\n");
     for ( i = 0 ; i<cols*5; i++ ) {
@@ -70,7 +70,7 @@ void outputLine (US cols) { //perhaps add a second argument for double lines?
 };
 
 
-void outputPartSuduku (US *suduku, US cols, US currentRow, US currentCol) {
+static void outputPartSuduku (US *suduku, US cols, US currentRow, US currentCol) {
     US k;
     outputLine(cols);
     for ( k=0 ; k < currentRow ; k++) {
@@ -92,7 +92,7 @@ void outputSuduku (US* suduku, US rows, US cols) {
 };
 
 
-void outputRow (US* row, US cols) {
+static void outputRow (US* row, US cols) {
     US j;
     printf("|");
     for (j=0 ; j<cols ; j++) {

@@ -16,7 +16,7 @@ void inputSize (US *rows, US *cols);
 void inputSuduku (US *suduku, US rows, US cols);
 void inputRow (US *row, US cols);
 
-bool validateInput(US num, US cols, US rows);
+bool validateInput(US *ptr, US cols, US rows);
 
 void outputSuduku (US* suduku, US rows, US cols);
 void outputLine(US cols); 
@@ -31,7 +31,7 @@ int main (void) {
     inputSize(&rows, &cols);
     suduku = malloc(rows*cols*sizeof(US));
     inputSuduku(suduku,rows, cols);
-    printf("\n\n\n Test: is this it? \n\n");
+    printf("\n\n\n    Output:n\n");
     outputSuduku(suduku,rows,cols);
     return 0;
 }
@@ -57,18 +57,24 @@ void intro (void) {
 
 
 void inputSize (US *rows, US *cols) {
-    printf("\n\n");
-    printf("How many rows does the suduku have? ");
-    scanf("%hu",rows);
-    printf("How many columns does the suduku have? ");
-    scanf("%hu",cols);
+    do {
+	system("clear");
+	intro();
+	printf("How may rows does the suduku have? ");
+    } while (validateInput(rows,100,100) == false);
+    
+    do {
+	system("clear");
+	intro();
+	printf("How may rows does the suduku have? %hu\n", *rows);
+	printf("How many columns does the suduku have? ");
+    } while (validateInput(cols,100,100) == false); 
     printf("\n");
 };
 
 
 void inputSuduku (US *suduku, US rows, US cols) {
     US i, j;
-    bool inputOK = false;
     outputLine(cols);
     for ( i=0 ; i<rows ; i++ ) {
         for (j=0 ; j<cols ; j++) {
@@ -77,28 +83,24 @@ void inputSuduku (US *suduku, US rows, US cols) {
 		intro();
 		printf("Please enter your suduku puzzle below, hitting <ENTER> after each number:\n");
 		outputPartSuduku(suduku,cols, i, j);
-		scanf("%hu", &(suduku[i*cols+j]));
-		inputOK = validateInput(suduku[i*cols+j],rows,cols);
-	    } while (inputOK == false);
+
+	    } while (validateInput(&(suduku[i*cols+j]),rows,cols) == false);;
 	};
     };
     printf("Thanks!");
 };
 
-bool validateInput(US num, US rows, US cols) {
-    printf("test");
-    bool valid;
-    if (num > rows || num > cols || num < 0) {
-	valid = false;
-	printf("\n\n That was not a valid input. Press <ENTER> to try again.");
-	getchar(); getchar(); //just to wait for <ENTER>
+
+bool validateInput(US *ptr, US rows, US cols) {
+    bool valid = false;
+    if (scanf("%2hu", ptr) != 1 || *ptr < 0 || (*ptr > rows && *ptr > cols)) {
+	printf("\n\n            That was not a valid input. Press <ENTER> to try again.");
+	getchar(); getchar(); getchar(); //just to wait for <ENTER>
     } else {
 	valid = true;
     };
     return valid;
 };
-
-
 
 
 void outputPartSuduku (US *suduku, US cols, US currentRow, US currentCol) {

@@ -18,8 +18,7 @@ int main (void) {
     inputSize(&rows, &cols);
     suduku = malloc(rows * cols * sizeof(US));
     inputSuduku(suduku, rows, cols);
-
-    //solve it...
+    solveSuduku(suduku, rows, cols);
 
     printf("\n\n\n    Output:n\n");
     outputSuduku(suduku,rows,cols);

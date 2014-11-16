@@ -6,4 +6,21 @@
 
 typedef unsigned short int US; // to save typing it out every time.
 
-int solve(US *suduku)
+
+// This will be the public
+int solveSuduku(US *suduku, US rows, US cols) {
+    int errornum = 0;
+
+
+    //call other solving functions.
+
+
+
+    return errornum;
+}
+
+
+
+static int checkRow() {
+    ;
+}

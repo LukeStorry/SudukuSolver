@@ -1,4 +1,4 @@
-/* This will store the headers for the actual solving method functions.
+/* This will store the declarations of the public solving functions.
  */
 
-
+int solveSuduku(US *suduku, US rows, US cols);

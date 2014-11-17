@@ -5,15 +5,20 @@
 #include <stdlib.h>
 
 typedef unsigned short int US; // to save typing it out every time.
+typedef enum e {good, bad} Error;
 
 
-// This will be the public
-int solveSuduku(US *suduku, US rows, US cols) {
+
+static Error checkRow(US num, US *size) {
+
+
+// This will be the main, and probably the only public, function.
+int solveSuduku(US *suduku, US size) {
     int errornum = 0;
 
 
     //call other solving functions.
-
+    checkRow(1,suduku,size);
 
 
     return errornum;
@@ -21,6 +26,9 @@ int solveSuduku(US *suduku, US rows, US cols) {
 
 
 
-static int checkRow() {
-    ;
+static Error checkRow(US num, US *size) {
+    
+    Error a = good;
+    
+    return a;
 }

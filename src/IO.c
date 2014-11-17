@@ -6,52 +6,43 @@
 
 typedef unsigned short US;
 
-static bool validateInput(US *ptr, US cols, US rows);
-static void outputLine(US cols);
-static void outputRow (US* row, US cols);
-static void outputPartSuduku (US *suduku, US cols, US currentRow, US currentCol);
+static bool validateInput(US *ptr, US size);
+static void outputLine(US size);
+static void outputRow (US* row, US size);
+static void outputPartSuduku (US *suduku, US size, US currentRow, US currentCol);
 
 
 #include "../include/IO.h"
 #include "../include/textybits.h"
 
-void inputSuduku (US *suduku, US rows, US cols) {
-    US i, j;
-    for ( i=0 ; i<rows ; i++ ) {
-        for (j=0 ; j<cols ; j++) {
+void inputSuduku (US *suduku, US size) {
+    US row, col;;
+    for ( row = 0 ; row < size ; row++ ) {
+        for (col = 0 ; col < size ; col++) {
             do {
 		system("clear");
 		intro();
 		printf("Please enter your suduku puzzle below, hitting <ENTER> after each number:\n");
-		outputPartSuduku(suduku,cols, i, j);
-	    } while (validateInput(&(suduku[i*cols+j]),rows,cols) == false);;
+		outputPartSuduku(suduku, size, row, col);
+	    } while (validateInput(&(suduku[row*size+col]),size) == false);;
 	};
     };
     printf("Thanks!");
 }
 
 
-void inputSize (US *rows, US *cols) {
+void inputSize (US *size) {
     do {
 	system("clear");
 	intro();
-	printf("How may rows does the suduku have? ");
-    } while (validateInput(rows,100,100) == false);
-    
-    do {
-	system("clear");
-	intro();
-	printf("How may rows does the suduku have? %hu\n", *rows);
-	printf("How many columns does the suduku have? ");
-    } while (validateInput(cols,100,100) == false); 
-    printf("\n");
+	printf("What size is the suduku?? ");
+    } while (validateInput(size,100) == false);   
 }
 
-
-static bool validateInput(US *ptr, US rows, US cols) {
+static bool validateInput(US *ptr, US max) {
     int c;
     bool valid = false;
-    if (scanf("%2hu", ptr) != 1 || (*ptr > rows && *ptr > cols)) {
+    if (scanf("%2hu", ptr) != 1 || *ptr > max) {
 	while((c = getchar()) != '\n'); //flush input stream	
 	printf("\n\n            That was not a valid input. Press <ENTER> to try again.");
 	getchar(); //wait for <ENTER>
@@ -63,42 +54,42 @@ static bool validateInput(US *ptr, US rows, US cols) {
 }
 
 
-static void outputLine (US cols) { //perhaps add a second argument for double lines?
+static void outputLine (US size) { //perhaps add a second argument for double lines?
     US i;
     printf("\n");
-    for ( i = 0 ; i<cols*5; i++ ) {
+    for ( i = 0 ; i<size*5; i++ ) {
         printf("─");
     }
     printf("\n");
 }
 
 
-static void outputPartSuduku (US *suduku, US cols, US currentRow, US currentCol) {
-    US k;
-    outputLine(cols);
-    for ( k=0 ; k < currentRow ; k++) {
-	 outputRow(&(suduku[k*cols]), cols);
+static void outputPartSuduku (US *suduku, US size, US currentRow, US currentCol) {
+    US i;
+    outputLine(size);
+    for ( i=0 ; i < currentRow ; i++ ) {
+	 outputRow(&(suduku[i*size]), size);
 	 printf("\b");
-	 outputLine(cols);
+	 outputLine(size);
     };
-    outputRow(&(suduku[currentRow*cols]), currentCol);
+    outputRow(&(suduku[currentRow*size]), currentCol);
 }
        
         
-void outputSuduku (US* suduku, US rows, US cols) {
-    US i;
-    outputLine(cols);
-    for ( i=0 ; i<rows ; i++ ) {
-        outputRow(&suduku[i*cols], cols);
-        outputLine(cols);
+void outputSuduku (US* suduku, US size) {
+    US row;
+    outputLine(size);
+    for ( row = 0 ; row < size ; row++ ) {
+        outputRow(&suduku[row*size], size);
+        outputLine(size);
     };
 }
 
 
-static void outputRow (US* row, US cols) {
-    US j;
+static void outputRow (US* size) {
+    US cell;
     printf("|");
-    for (j=0 ; j<cols ; j++) {
-            printf(" %hu |",row[j]);
+    for ( cell = 0 ; cell < size ; cell++) {
+            printf(" %hu |",row[cell]);
         };
 }

@@ -13,16 +13,16 @@ typedef unsigned short int US; // to save typing it out every time.
 #include "../include/solver.h"
 
 int main (void) {
-    US rows, cols, *suduku;
+    US size *suduku;
     intro();
     printf("Hit <ENTER> to begin!"); getchar(); //getchar captures the enter>
-    inputSize(&rows, &cols);
-    suduku = malloc(rows * cols * sizeof(US));
-    inputSuduku(suduku, rows, cols);
-    solveSuduku(suduku, rows, cols);
+    inputSize(&size);
+    suduku = malloc(size * size * sizeof(US));
+    inputSuduku(suduku, size);
+    solveSuduku(suduku, size);
 
     printf("\n\n\n    Output:n\n");
-    outputSuduku(suduku,rows,cols);
+    outputSuduku(suduku, size);
     return 0;
 }
 

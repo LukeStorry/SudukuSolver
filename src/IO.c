@@ -86,7 +86,7 @@ void outputSuduku (US* suduku, US size) {
 }
 
 
-static void outputRow (US* size) {
+static void outputRow (US*row, US size) {
     US cell;
     printf("|");
     for ( cell = 0 ; cell < size ; cell++) {

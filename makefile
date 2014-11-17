@@ -22,7 +22,7 @@ $(TARGET): $(SOURCES) $(HEADERS)
 	$(CC) $(FLAGS) -o $(TARGET) $(SOURCES)
 
 warn: $(SOURCES) $(HEADERS)
-	$(CC) $(FLAGS) $(WFLAGS) -o $(TARGET) $(SOURCES)
+	clear && $(CC) $(FLAGS) $(WFLAGS) -o $(TARGET) $(SOURCES)
 
 clean:
 	-rm -f $(OBJECTS)

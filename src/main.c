@@ -13,7 +13,7 @@ typedef unsigned short int US; // to save typing it out every time.
 #include "../include/solver.h"
 
 int main (void) {
-    US size *suduku;
+    US size, *suduku;
     intro();
     printf("Hit <ENTER> to begin!"); getchar(); //getchar captures the enter>
     inputSize(&size);

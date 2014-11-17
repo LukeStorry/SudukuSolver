@@ -9,7 +9,7 @@ typedef enum e {good, bad} Error;
 
 
 
-static Error checkRow(US num, US *size) {
+static Error checkRow(US num, US *row, US size);
 
 
 // This will be the main, and probably the only public, function.
@@ -26,7 +26,7 @@ int solveSuduku(US *suduku, US size) {
 
 
 
-static Error checkRow(US num, US *size) {
+static Error checkRow(US num, US *row, US size) {
     
     Error a = good;
     

@@ -1,0 +1,2 @@
+create an array for each cell (bool possibilities[size]) that stores whether each digit is possible. then eliminate each one, repeatedly.
+

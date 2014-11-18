@@ -22,7 +22,7 @@ void inputSuduku (US *suduku, US size) {
             do {
 		system("clear");
 		intro();
-		printf("Please enter your suduku puzzle below, hitting <ENTER> after each number:\n");
+		printf("Please enter your suduku puzzle below, with 0 for spaces. Press <ENTER> after each number.\n");
 		outputPartSuduku(suduku, size, row, col);
 	    } while (validateInput(&(suduku[row*size+col]),size) == false);;
 	};

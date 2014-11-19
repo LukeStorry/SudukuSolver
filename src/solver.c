@@ -6,14 +6,13 @@
 #include <stdbool.h>
 
 typedef unsigned short int US; // to save typing it out every time.
-
-void initialise (bool **possibles, US *input, US size);
+void initialise (char **possibles, US *input, US size);
 
 
 // This will be the main, and probably the only public, function.
 int solveSuduku(US *input, US size) {
     int errornum = 0;
-    bool **possibles = malloc(size*size*sizeof(*bool)); //mallocs a pointer per cell.
+    char **possibles = malloc(size*size*sizeof(*char)); //mallocs a pointer per cell.
     initialise(possibles, input, size);
 
     //call other solving functions.
@@ -25,17 +24,17 @@ int solveSuduku(US *input, US size) {
 
 
 
-void initialise(bool **possibles, US *input, US size) {
+void initialise(char **possibles, US *input, US size) {
     US i, j;
     for( i=0 ; i < size*size ; i++ ) {
-	possibles[i] = malloc(size*sizeof(bool)); //each cell pointer points to an array of bools
+	possibles[i] = malloc(size*sizeof(char)); //each cell pointer points to an array of bools
 	if (input[i] == 0) { //if input was blank
 	    for( j=0 ; j < size ; j++ ) {
-		possibles[i][j] = true; //all numbers are possible
+		possibles[i][j] = 1; //all numbers are possible
 	    };
 	} else {
 	    for( j=0 ; j < size ; j++ ) {
-		possibles[i][j] = (input[i] = j+1) ? true : false; //only the input number is possible.
+		possibles[i][j] = (input[i] = j+1) ? 1 : 0; //only the input number is possible.
 	    };
 	};
     };

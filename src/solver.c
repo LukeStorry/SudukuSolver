@@ -49,11 +49,29 @@ static void initialise(Poss **possibles, US *input, US size) {
 
 // This checks each row and changes the Poss possibility tag 
 static void checkRowDuplicates(Poss **possibles, US size) {
-    int i, row;
+    US num, row;
     for ( row = 0 ; row < size ; row++ ) {//in each row,
-	for ( i = 0 ; i < size ; i++ ) { //for each number,
+	for ( num = 0 ; num < size ; num++ ) { //for each number,
+	    if (numIsInRow(num, row, suduku, size)) {
+		removeNumFromRow(num, row, suduku, size);
+	    };
+	};
+    };
 
+}
 	    
+bool numIsInRow(US num, US row, US** suduku, US size) {
+    US cell;
+    bool taken = false;
+    for ( cell = 0 ; cell < size ; cell++ ) { //for each cell in row,
+	if (possibilities[row*size+cell][num] = definite) { //if thenum is taken by that cell
+	    taken = true;
+	};
+    };
+    return taken;
+}
+
+
 
 // This checks each column and changes the Poss possibility tag 
 static void checkColDuplicates(Poss **possibles, US size) {

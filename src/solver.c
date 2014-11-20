@@ -57,10 +57,11 @@ static void checkRowDuplicates(Poss **possibles, US size) {
 	    };
 	};
     };
-
 }
-	    
-bool numIsInRow(US num, US row, US** suduku, US size) {
+
+
+//This checks a row for a number, returning true or false.	    
+static bool numIsInRow(US num, US row, US** suduku, US size) {
     US cell;
     bool taken = false;
     for ( cell = 0 ; cell < size ; cell++ ) { //for each cell in row,
@@ -69,6 +70,14 @@ bool numIsInRow(US num, US row, US** suduku, US size) {
 	};
     };
     return taken;
+}
+
+static void removeNumFromRow(US num, US row, US** suduku, US size) {
+    US cell;
+    bool taken = false;
+    for ( cell = 0 ; cell < size ; cell++ ) { //for each cell in row,
+	possibilities[row*size+cell][num] = notpossible;
+    };
 }
 
 

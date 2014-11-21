@@ -10,9 +10,20 @@ typedef enum poss {NOTPOSSIBLE, POSSIBLE, DEFINITE} Poss;
 
 
 static void initialise (Poss **possibles, US *input, US size);
+
 static void checkRowDuplicates(Poss **possibles, US size);
+static bool numIsInRow(US num, US row, US** suduku, US size);
+static void removeNumFromRow(US num, US row, US** suduku, US size);
+
 static void checkColDuplicates(Poss **possibles, US size);
+static bool numIsInCol(US num, US col, US** suduku, US size);
+static void removeNumFromCol(US num, US col, US** suduku, US size);
+
+
 static void checkBoxDuplicates(Poss **possibles, US size);
+static bool numIsInBox(US num, US box, US** suduku, US size);
+static void removeNumFromBox(US num, US box, US** suduku, US size);
+
 
 
 // This will be the main, and probably the only public, function.
@@ -23,7 +34,6 @@ int solveSuduku(US *input, US size) {
     checkRowDuplicates(possibles, size);
 
     //call other solving functions.
-
 
 
     return errornum;

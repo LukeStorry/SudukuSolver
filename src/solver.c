@@ -9,29 +9,29 @@ typedef unsigned short int US; // to save typing it out every time.
 typedef enum poss {NOTPOSSIBLE, POSSIBLE, DEFINITE} Poss;
 
 
-static void initialise (Poss **possibles, US *input, US size);
+static void initialise (Poss **arrayOfPoss, US *input, US size);
 
-static void checkRowDuplicates(Poss **possibles, US size);
-static bool numIsInRow(US num, US row, US** suduku, US size);
-static void removeNumFromRow(US num, US row, US** suduku, US size);
+static void checkRowDuplicates(Poss **arrayOfPoss, US size);
+static bool numIsInRow(US num, US row, US** arrayOfPoss, US size);
+static void removeNumFromRow(US num, US row, US** arrayOfPoss, US size);
 
-static void checkColDuplicates(Poss **possibles, US size);
-static bool numIsInCol(US num, US col, US** suduku, US size);
-static void removeNumFromCol(US num, US col, US** suduku, US size);
+static void checkColDuplicates(Poss **arrayOfPoss, US size);
+static bool numIsInCol(US num, US col, US** arrayOfPoss, US size);
+static void removeNumFromCol(US num, US col, US** arrayOfPoss, US size);
 
 
-static void checkBoxDuplicates(Poss **possibles, US size);
-static bool numIsInBox(US num, US box, US** suduku, US size);
-static void removeNumFromBox(US num, US box, US** suduku, US size);
+static void checkBoxDuplicates(Poss **arrayOfPoss, US size);
+static bool numIsInBox(US num, US box, US** arrayOfPoss, US size);
+static void removeNumFromBox(US num, US box, US** arrayOfPoss, US size);
 
 
 
 // This will be the main, and probably the only public, function.
 int solveSuduku(US *input, US size) {
     int errornum = 0;
-    Poss **possibles = malloc(size*size*sizeof(Poss*)); //mallocs a pointer per cell.
-    initialise(possibles, input, size);
-    checkRowDuplicates(possibles, size);
+    Poss **arrayOfPoss = malloc(size*size*sizeof(Poss*)); //mallocs a pointer per cell.
+    initialise(arrayOfPoss, input, size);
+    checkRowDuplicates(arrayOfPoss, size);
 
     //call other solving functions.
 
@@ -41,29 +41,29 @@ int solveSuduku(US *input, US size) {
 
 
 // This uses the input to initialise a 3d Poss Array of all the possibilities
-static void initialise(Poss **possibles, US *input, US size) {
+static void initialise(Poss **arrayOfPoss, US *input, US size) {
     US i, j;
     for( i=0 ; i < size*size ; i++ ) {
-	possibles[i] = malloc(size*sizeof(Poss)); //each cell pointer points to an array of Posss
+	arrayOfPoss[i] = malloc(size*sizeof(Poss)); //each cell pointer points to an array of Posss
 	if (input[i] == 0) { //if input was blank
 	    for( j=0 ; j < size ; j++ ) {
-		possibles[i][j] = POSSIBLE; //all numbers are possible
+		arrayOfPoss[i][j] = POSSIBLE; //all numbers are possible
 	    };
 	} else {
 	    for( j=0 ; j < size ; j++ ) {
-		possibles[i][j] = (input[i] = j+1) ? DEFINITE : NOTPOSSIBLE; //the input number is definite, the rest aren't possible.
+		arrayOfPoss[i][j] = (input[i] = j+1) ? DEFINITE : NOTPOSSIBLE; //the input number is definite, the rest aren't possible.
 	    };
 	};
     };
 }
 
 // This checks each row and changes the Poss possibility tag 
-static void checkRowDuplicates(Poss **possibles, US size) {
+static void checkRowDuplicates(Poss **arrayOfPoss, US size) {
     US num, row;
     for ( row = 0 ; row < size ; row++ ) {//in each row,
 	for ( num = 0 ; num < size ; num++ ) { //for each number,
-	    if (numIsInRow(num, row, suduku, size)) {
-		removeNumFromRow(num, row, suduku, size);
+	    if (numIsInRow(num, row, arrayOfPoss, size)) {
+		removeNumFromRow(num, row, arrayOfPoss, size);
 	    };
 	};
     };
@@ -71,35 +71,35 @@ static void checkRowDuplicates(Poss **possibles, US size) {
 
 
 //This checks a row for a number, returning true or false.	    
-static bool numIsInRow(US num, US row, US** suduku, US size) {
+static bool numIsInRow(US num, US row, US** arrayOfPoss, US size) {
     US cell;
     bool taken = false;
     for ( cell = 0 ; cell < size ; cell++ ) { //for each cell in row,
-	if (possibilities[row*size+cell][num] == DEFINITE ) { //if thenum is taken by that cell
+	if (arrayOfPoss[row*size+cell][num] == DEFINITE ) { //if thenum is taken by that cell
 	    taken = true;
 	};
     };
     return taken;
 }
 
-static void removeNumFromRow(US num, US row, US** suduku, US size) {
+static void removeNumFromRow(US num, US row, US** arrayOfPoss, US size) {
     US cell;
     bool taken = false;
     for ( cell = 0 ; cell < size ; cell++ ) { //for each cell in row,
-	possibilities[row*size+cell][num] = NOTPOSSIBLE;
+	arrayOfPoss[row*size+cell][num] = NOTPOSSIBLE;
     };
 }
 
 
 
 // This checks each column and changes the Poss possibility tag 
-static void checkColDuplicates(Poss **possibles, US size) {
+static void checkColDuplicates(Poss **arrayOfPoss, US size) {
     ;
 }
 
 
 
 // This checks each box and changes the Poss possibility tag 
-static void checkBoxDuplicates(Poss **possibles, US size) {
+static void checkBoxDuplicates(Poss **arrayOfPoss, US size) {
     ;
 }

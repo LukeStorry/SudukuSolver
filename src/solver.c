@@ -12,17 +12,17 @@ typedef enum poss {NOTPOSSIBLE, POSSIBLE, DEFINITE} Poss;
 static void initialise (Poss **arrayOfPoss, US *input, US size);
 
 static void checkRowDuplicates(Poss **arrayOfPoss, US size);
-static bool numIsInRow(US num, US row, US** arrayOfPoss, US size);
-static void removeNumFromRow(US num, US row, US** arrayOfPoss, US size);
+static bool numIsInRow(US num, US row, Poss** arrayOfPoss, US size);
+static void removeNumFromRow(US num, US row, Poss** arrayOfPoss, US size);
 
 static void checkColDuplicates(Poss **arrayOfPoss, US size);
-static bool numIsInCol(US num, US col, US** arrayOfPoss, US size);
-static void removeNumFromCol(US num, US col, US** arrayOfPoss, US size);
+static bool numIsInCol(US num, US col, Poss** arrayOfPoss, US size);
+static void removeNumFromCol(US num, US col, Poss** arrayOfPoss, US size);
 
 
 static void checkBoxDuplicates(Poss **arrayOfPoss, US size);
-static bool numIsInBox(US num, US box, US** arrayOfPoss, US size);
-static void removeNumFromBox(US num, US box, US** arrayOfPoss, US size);
+static bool numIsInBox(US num, US box, Poss** arrayOfPoss, US size);
+static void removeNumFromBox(US num, US box, Poss** arrayOfPoss, US size);
 
 
 
@@ -71,7 +71,7 @@ static void checkRowDuplicates(Poss **arrayOfPoss, US size) {
 
 
 //This checks a row for a number, returning true or false.	    
-static bool numIsInRow(US num, US row, US** arrayOfPoss, US size) {
+static bool numIsInRow(US num, US row, Poss** arrayOfPoss, US size) {
     US cell;
     bool taken = false;
     for ( cell = 0 ; cell < size ; cell++ ) { //for each cell in row,
@@ -82,9 +82,8 @@ static bool numIsInRow(US num, US row, US** arrayOfPoss, US size) {
     return taken;
 }
 
-static void removeNumFromRow(US num, US row, US** arrayOfPoss, US size) {
+static void removeNumFromRow(US num, US row, Poss** arrayOfPoss, US size) {
     US cell;
-    bool taken = false;
     for ( cell = 0 ; cell < size ; cell++ ) { //for each cell in row,
 	arrayOfPoss[row*size+cell][num] = NOTPOSSIBLE;
     };

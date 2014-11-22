@@ -85,7 +85,9 @@ static bool numIsInRow(US num, US row, Poss** arrayOfPoss, US size) {
 static void removeNumFromRow(US num, US row, Poss** arrayOfPoss, US size) {
     US cell;
     for ( cell = 0 ; cell < size ; cell++ ) { //for each cell in row,
-	arrayOfPoss[row*size+cell][num] = NOTPOSSIBLE;
+	if (arrayOfPoss[row*size+cell][num] != DEFINITE) {
+	    arrayOfPoss[row*size+cell][num] = NOTPOSSIBLE;
+	};
     };
 }
 
@@ -93,8 +95,38 @@ static void removeNumFromRow(US num, US row, Poss** arrayOfPoss, US size) {
 
 // This checks each column and changes the Poss possibility tag 
 static void checkColDuplicates(Poss **arrayOfPoss, US size) {
-    ;
+    US num, col;
+    for ( col = 0 ; col < size ; col++ ) {//in each col,
+	for ( num = 0 ; num < size ; num++ ) { //for each number,
+	    if (numIsInCol(num, col, arrayOfPoss, size)) {
+		removeNumFromCol(num, col, arrayOfPoss, size);
+	    };
+	};
+    };
 }
+
+//This checks a col for a number, returning true or false.	    
+static bool numIsInCol(US num, US col, Poss** arrayOfPoss, US size) {
+    US cell;
+    bool taken = false;
+    for ( cell = 0 ; cell < size ; cell++ ) { //for each cell in row,
+	if (arrayOfPoss[col+cell*size][num] == DEFINITE ) { //if thenum is taken by that cell
+	    taken = true;
+	};
+    };
+    return taken;
+}
+
+static void removeNumFromCol(US num, US col, Poss** arrayOfPoss, US size) {
+    US cell;
+    for ( cell = 0 ; cell < size ; cell++ ) { //for each cell in row,
+	if (arrayOfPoss[col+cell*size][num] != DEFINITE) {
+	    arrayOfPoss[col+cell*size][num] = NOTPOSSIBLE;
+	};
+    };
+}
+
+
 
 
 

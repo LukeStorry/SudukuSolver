@@ -1,9 +1,10 @@
 /* This file contains all the functions related to the actual solving of the suduku
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <stdbool.h>
+#include <math.h> 
 
 typedef unsigned short int US; // to save typing it out every time.
 typedef enum poss {NOTPOSSIBLE, POSSIBLE, DEFINITE} Poss;
@@ -126,11 +127,42 @@ static void removeNumFromCol(US num, US col, Poss** arrayOfPoss, US size) {
     };
 }
 
-
-
-
-
 // This checks each box and changes the Poss possibility tag 
 static void checkBoxDuplicates(Poss **arrayOfPoss, US size) {
-    ;
+    US num, box;
+    for ( box = 0 ; box < size ; box ++) { //there are 'size' number of boxes. Check them all.
+	for ( num = 0 ; num < size ; num++ ) { //for each number,
+	    if (numIsInBox(num, box, arrayOfPoss, size)) {
+		removeNumFromBox(num, box, arrayOfPoss, size);
+	    };
+	};
+    };
+
+
+
 }
+
+//This checks a Box for a number, returning true or false.	    
+static bool numIsInBox(US num, US box, Poss** arrayOfPoss, US size) {
+    US rowNum, colNum;		//iteration counters
+    US rows = sqrt(size);	//number of rows in each box
+    US cols = (rows*rows == size ? sqrt(size) : (sqrt(size)+1;	//number of cols in each box. test required for odd shaped sudukus
+    if 
+    bool taken = false;
+    for ( row = 0 ; row < size/3 ; row++ ) { //for each cell in row,
+	if (arrayOfPoss[box+cell*size][num] == DEFINITE ) { //if thenum is taken by that cell
+	    taken = true;
+	};
+    };
+    return taken;
+}
+
+static void removeNumFromBox (US num, US box, Poss** arrayOfPoss, US size) {
+    US cell;
+    for ( cell = 0 ; cell < size ; cell++ ) { //for each cell in row,
+	if (arrayOfPoss[col+cell*size][num] != DEFINITE) {
+	    arrayOfPoss[col+cell*size][num] = NOTPOSSIBLE;
+	};
+    };
+}
+

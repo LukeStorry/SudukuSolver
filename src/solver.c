@@ -161,8 +161,8 @@ static bool numIsInBox(US num, US box, Poss** arrayOfPoss, US size) {
 static void removeNumFromBox (US num, US box, Poss** arrayOfPoss, US size) {
     US cell;
     for ( cell = 0 ; cell < size ; cell++ ) { //for each cell in row,
-	if (arrayOfPoss[col+cell*size][num] != DEFINITE) {
-	    arrayOfPoss[col+cell*size][num] = NOTPOSSIBLE;
+	if (arrayOfPoss[box*rowsPerBox + box*colsPerBox + size*rowNum+ colNum][num] != DEFINITE) {
+	    arrayOfPoss[box*rowsPerBox + box*colsPerBox + size*rowNum+ colNum] = NOTPOSSIBLE;
 	};
     };
 }

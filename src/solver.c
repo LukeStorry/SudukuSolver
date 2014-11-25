@@ -145,13 +145,14 @@ static void checkBoxDuplicates(Poss **arrayOfPoss, US size) {
 //This checks a Box for a number, returning true or false.	    
 static bool numIsInBox(US num, US box, Poss** arrayOfPoss, US size) {
     US rowNum, colNum;		//iteration counters
-    US rows = sqrt(size);	//number of rows in each box
-    US cols = (rows*rows == size ? sqrt(size) : (sqrt(size)+1;	//number of cols in each box. test required for odd shaped sudukus
-    if 
+    US rowsPerBox = sqrt(size);	//number of rows in each box
+    US colsPerBox = (rowsPerBox*rowsPerBox == size) ? sqrt(size) : (sqrt(size)+1);	//number of cols in each box. test required for odd shaped sudukus
     bool taken = false;
-    for ( row = 0 ; row < size/3 ; row++ ) { //for each cell in row,
-	if (arrayOfPoss[box+cell*size][num] == DEFINITE ) { //if thenum is taken by that cell
-	    taken = true;
+    for ( rowNum = 0 ; rowNum < rows ; rowNum++ ) { //for each cell in row,
+	for ( colNum = 0 ; colNum < colsPerBox ; colNum++ ) { //for each cell in row,
+	    if (arrayOfPoss[box*rowsPerBox + box*colsPerBox + size*rowNum+ colNum][num] == DEFINITE ) { //if thenum is taken by that cell
+		taken = true;
+	    };
 	};
     };
     return taken;
